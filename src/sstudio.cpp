@@ -55,6 +55,36 @@ void print_some_escape_chars()
 	std::cout << my_string << "\n";
 }
 
+
+std::string word_guess(const std::string answer, std::string player_input)
+{
+	std::string result;
+	for (unsigned int i = 0; i < player_input.length(); ++i) {
+
+		char player_char {player_input[i]};
+
+		int pos_in_answer {-1};
+		for (unsigned int j = 0; j < answer.length(); ++j) {
+			char answer_char {answer[j]};
+			if (player_char == answer_char)
+			{
+				pos_in_answer = j;
+				break;
+			}
+		}
+
+
+		if (pos_in_answer == i) {
+			result += "1";
+		} else if (pos_in_answer>=0) {
+			result += "X";
+		} else {
+			result += "-";
+		}
+	}
+	return result;
+}
+
 int main() {
 
 	std::cout << "Please select target function: \n"
@@ -62,6 +92,7 @@ int main() {
 			" b : Print escape sequences \n"
 			" c : Print text frame\n"
 			" d : Print text sign\n"
+			" e : Word guess\n"
 			":";
 	std::string func_name;
 	std::cin >> func_name;
@@ -92,6 +123,18 @@ int main() {
 		std::cin >> text;
 
 		print_text_sign(text);
+	}
+
+	if (func_name == "e")
+	{
+		std::string answer;
+		std::string user_input;
+		std::cout << "Enter the answer word:";
+		std::cin >> answer;
+		std::cout << "Enter your guess:";
+		std::cin >> user_input;
+
+		std::cout << word_guess(answer, user_input) << "\n";
 	}
 
 }
