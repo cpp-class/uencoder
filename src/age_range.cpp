@@ -3,7 +3,22 @@
 
 std::string age_range(int age)
 {
-	return "X";
+	if (age>=13 && age<=17)
+	{
+		return "Teenager";
+	}
+
+	if (age>17)
+	{
+		return "Adult";
+	}
+
+	if (age<=0)
+	{
+		return "Invalid";
+	}
+
+	return "Child";
 
 }
 
