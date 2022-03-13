@@ -1,5 +1,5 @@
 #include "age_range.hpp"
-#include <iostream>
+#include "doctest.h"
 
 std::string age_range(int age)
 {
@@ -23,45 +23,25 @@ std::string age_range(int age)
 }
 
 
-int test_age_range()
+TEST_CASE("Check invalid range")
 {
-	if (age_range(5) != "Child" || age_range(12) != "Child")
-	{
-		std::cout << "Age 1-12 should be child\n";
-
-		return -1;
-	}
-
-	if (age_range(13) != "Teenager" || age_range(17)!= "Teenager" || age_range(18) =="Teenager")
-	{
-		std::cout << "Age 13-17 should be Teenager\n";
-
-		return -1;
-
-	}
-
-	if (age_range(18) != "Adult")
-	{
-		std::cout << "Age >17 should be Adult\n";
-
-		return -1;
-
-	}
-
-
-	if (age_range(0) != "Invalid")
-	{
-		std::cout << "Age 0 should be invalid\n";
-		return -1;
-	}
-
-	if (age_range(-10) != "Invalid")
-	{
-		std::cout << "Age should not be nagative\n";
-	}
-
-
-
-	return 1;
+	CHECK(age_range(0) == "Invalid");
+	CHECK(age_range(-5) == "Invalid");
+	CHECK(age_range(-100) == "Invalid");
 }
 
+TEST_CASE("Check child range 1-12")
+{
+	CHECK(age_range(1) == "Child");
+	CHECK(age_range(5) == "Child");
+	CHECK(age_range(12) == "Child");
+	CHECK(age_range(13) != "Child");
+}
+
+TEST_CASE("Check Teenager range")
+{
+}
+
+TEST_CASE("Check Adult range")
+{
+}
