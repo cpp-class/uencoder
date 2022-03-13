@@ -1,2 +1,1 @@
-# string-studio
-Fun with std::string
+# UTF8 encoding
